@@ -22,8 +22,9 @@ calc_QR <- function(A){
     # pad Q_i, if Q_i's dimensions are smaller than original matrix
     if(i > 0){
       padded_Q <- diag(rows)
-      padded_Q[-i,-i] <- Q
+      padded_Q[-1:-i,-1:-i] <- Q #check if you need -1:-i???
       Q <- padded_Q
+      #print(Q)
     }
     # add Q_i to the list
     Q_list[[i+1]] <- Q
@@ -33,9 +34,8 @@ calc_QR <- function(A){
     for(elem in rev(Q_list)[-1]){
       temp <- temp %*% elem
     }
-    # calculate R with the help of temp and A_start. Round to 5 digits,
-    # because otherwise 0 won't be exactly 0
-    R <- round(temp %*% A_start, digits = 10)
+    # calculate R with the help of temp and A_start.
+    R <- temp %*% A_start
     # Assign a subset of R to A
     A <- as.matrix(R[-1:-(i+1), -1:-(i+1)])
     # increment counter
