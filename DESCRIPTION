@@ -1,17 +1,17 @@
 Package: advancedRLab4
 Type: Package
-Title: Advanced R Lab 04
+Title: Advanced R Lab 4
 Version: 1.0
-Date: 2022-09-20
+Date: 2022-09-21
 Author: c(Yannik, Jonathan)
 Maintainer: <jondo380@student.liu.se>
-Description: This package contains a function which takes two integer values
-  as its input and returns the greatest common divisor of the two.
-  It also contains a function which takes a graph and a starting point as its
-  inputs and calculates the shortest distances to all other nodes in the graph.
+Description: This package contains a function that implements a linear regression 
+    model using QR decomposition. Other custom functions are also defined.
 License: GPL-3 + file LICENSE
 RoxygenNote: 7.2.1
-Depends: R (>= 3.5.0),ggplot2
+Depends: R (>= 3.5.0)
+Imports: ggplot2,stats
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 LazyData: TRUE
+Encoding: UTF-8
