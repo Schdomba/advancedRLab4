@@ -1,25 +1,18 @@
+#' Function that creates an S3 Class of class lm1
+#'
+#' @param formula passes the dependent variable and independant variable
+#' @param data A data frame 
+#'
+#' @return A class of type lm1 with specific attributes and functions(?)
+#' @export
+#'
+#' @examples
+#' lm(formula = Petal.Length ~ Species, data = iris)
+
 lm <- function(formula,data)
 {
   lmlist <- linreg(formula, data)
-  # lmlist <- list(
-  # ehat = templist$residuale,
-  # Beta = templist$betahat,
-  # Q = templist$Q,
-  # R = templist$R,
-  # QR = templist$QR,
-  # y_fitted = templist$fitted_Y,
-  # varB = templist$variance_Beta,
-  # coeff = templist$coeff
-  # )
-  # lmlist <- list(residual = ehat,Beta,Q,R,QR,y_fitted,varB)
-  
-  
-  # print <- function(obj){
-  #   UseMethod("print")
-  # }
-  
-  
-  #lmlist <- append(lmlist,print.lm1)
+ 
   class(lmlist) <- "lm1"
   return(lmlist)
 }
