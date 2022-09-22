@@ -11,10 +11,9 @@
 #' print(mod_object)
 
 print.linreg <- function(x,...){
-  #cat("Call:\n")
+
   cat(paste("linreg(formula = ", format(x$formula), ", data = ", x$dfname , ")\n\n ", sep = ""))
-  #print("Coefficients")
+
   print(x$Beta)
-  #return(x$coeff)
 
 }

@@ -38,8 +38,6 @@ summary.linreg <- function(object,...)
   }
 
   df1[' '] <- stars
-  #print.data.frame(df1)
-  #return(df1)
   print(df1)
   cat("Residual standard error:", object$sigma, "on" , object$dof, "degrees of freedom")
 }

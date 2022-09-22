@@ -18,7 +18,6 @@ values <- data.frame("Residuals" = x$ehat,"Fitted_Values" = round(x$y_fitted,5))
 
   colnames(values) <- c("Residuals","Fitted_Values")
   k<- unique(values$Fitted_Values)
-  # return(k)
  medianvec <- c()
  for(i in k){
    medianvec <-  append(medianvec,median(as.vector(values$Residuals[which(
@@ -28,6 +27,8 @@ values <- data.frame("Residuals" = x$ehat,"Fitted_Values" = round(x$y_fitted,5))
  linedf <- data.frame(k,medianvec)
 
  plotlist <- list()
+ #plot 1
+
  plot1 <- (ggplot2::ggplot() +
  ggplot2::geom_point(data = values, ggplot2::aes_string(y = "Residuals",x = "Fitted_Values"),shape = 1) +
  ggplot2::geom_line(data = linedf, ggplot2::aes(x = k,y = medianvec),color = "red") +
@@ -35,17 +36,18 @@ values <- data.frame("Residuals" = x$ehat,"Fitted_Values" = round(x$y_fitted,5))
    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) )
 
 
- # qwerty <- sqrt(abs(mod_obj$varB))
  values$Residuals <- sqrt(abs(values$Residuals/sd(values$Residuals)))
+ medianvec1 <- c()
 
-  medianvec1 <- c()
   for(i in k){
     medianvec1 <-  append(medianvec1,median(as.vector(values$Residuals[which(
       values$Fitted_Values == i)])))
-  }
+             }
 
   linedf2 <- data.frame(k,medianvec1)
 
+
+  #plot 2
    plot2 <- ggplot2::ggplot() +
    ggplot2::geom_point(data = values, ggplot2::aes_string(x = "Fitted_Values", y = "Residuals"),shape = 1) +
    ggplot2::geom_line(data = linedf2, ggplot2::aes(x = k,y = medianvec1),color = "red") +
