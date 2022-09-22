@@ -1,0 +1,96 @@
+---
+title: "The Linreg Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The Linreg Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  options(width = 150),
+  fig.align = 'center',
+  comment = "#>"
+)
+```
+This vignette summarizes the package `linreg` and all its dependent methods. To use the package, run the command below :
+```{r setup}
+library(advancedRLab4)
+```
+
+## Linreg
+
+The function `linreg` takes two arguments, `formula` and `data`, where `data` is a data.frame. The example below utilises the `iris` data.frame.The `linreg` function, uses QR decomposition to calculate the values listed below and store them in an object of class "`linreg`" and return this object.
+
+
+```{r}
+data(iris)
+mod_object <- linreg(formula = Petal.Length ~ Species, data = iris)
+print(names(mod_object))
+```
+The object `linreg` contains the following elements
+
+* QR          <- object of type qr
+* Q           <- the matrix `Q`
+* R           <- the triangular matrix `R`
+* varB        <- variance of  $\hat{\beta}$
+* ehat        <- residual values $\hat{e}$
+* y_fitted    <- the fitted values $\hat{y}$
+* Beta        <- regression coefficients $\beta$
+* dof         <- Degrees of freedom
+* tval        <- t-values
+* pval        <- p-values
+* sigma1      <- standard deviation $\sigma$ 
+* stde        <- Standard Error
+* formula     <- the input `formula` object
+* dfname      <- name of the input data.frame
+
+## Functions 
+ 
+### print()
+
+This is an S3 Method implementation of the generic `print` function, which prints out the coefficient and coefficient names as well the function call. See example below : 
+```{r}
+print(mod_object)
+```
+
+### plot()
+
+The `plot` function is an S3 Method implementation of the generic `plot` function. It plots two graphs : 
+```{r}
+plot(mod_object)
+```
+
+1. Residual Values vs Fitted Values
+2. $\sqrt{StandardizedResiduals}$ vs Fitted Values
+
+### resid()
+
+This is an S3 Method. It returns the residuals calculated.
+```{r}
+head(resid(mod_object))
+```
+
+### pred()
+
+This function return the predicted values $\hat{y}$
+```{r}
+head(pred(mod_object))
+```
+
+### coef()
+
+This function returns the coefficients as named vector.
+```{r}
+coef(mod_object)
+```
+
+### summary()
+
+This functions summarizes the coefficients with their standard error, t-values, p-values, estimated $\hat{\sigma}$ and the degrees of freedom in the model.
+
+```{r}
+summary(mod_object)
+```
