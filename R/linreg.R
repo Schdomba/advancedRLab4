@@ -32,7 +32,7 @@ linreg <- function(formula, data)
   # str(y) #print(y)
   #print(as.matrix(y))
   # b <- backsolve(R, crossprod(Q,y))
-  b <- solve.qr(QR,y)
+  b <- qr.coef(QR,y)
   #print(b)
   # VB <-var(b) doesn't work, generates a 0x0 matrix
   # yfitted <- tcrossprod(Q)%*% (as.matrix(y)) works but just using inbuilt qr
@@ -44,7 +44,7 @@ linreg <- function(formula, data)
   e <- qr.resid(QR,as.matrix(y))
   #print(e)
 
-  coeff <- qr.coef(QR,y)
+
 
   # sigma2 means sigma^2
   sigma2 <- sum(e^2)/ (nrow(Q) - ncol(Q))
@@ -57,7 +57,7 @@ linreg <- function(formula, data)
 
   stde <- sqrt(varB)
   stored_calc <- list(QR = QR,Q = Q,R = R,varB = varB,ehat = e,y_fitted = y1,
-                      Beta = b,coeff = coeff,dof = dof,tval = tval,pval = pval,
+                      Beta = b,dof = dof,tval = tval,pval = pval,
                       sigma1 = sigma1,stde = stde,formula = formula,
                       dfname = deparse(substitute(data)))
   class(stored_calc) <- "linreg"

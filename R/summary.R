@@ -14,7 +14,7 @@
 
 summary.linreg <- function(object,...)
 {
-  df1 <- data.frame(Coefficients = object$coeff,"Standard Error" = object$stde,
+  df1 <- data.frame(Coefficients = object$Beta,"Standard Error" = object$stde,
                     "t-value" = object$tval,"p-val" = object$pval,"sigma" = object$sigma1,"DoF" = object$dof)
   stars <- vector(length = length(object$pval))
   for (i in 1:length(object$pval)) {

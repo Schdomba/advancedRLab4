@@ -29,7 +29,7 @@ values <- data.frame("Residuals" = x$ehat,"Fitted_Values" = round(x$y_fitted,5))
 
  plotlist <- list()
  plot1 <- (ggplot2::ggplot() +
- ggplot2::geom_point(data = values, ggplot2::aes(y = values$Residuals,x = values$Fitted_Values),shape = 1) +
+ ggplot2::geom_point(data = values, ggplot2::aes_string(y = "Residuals",x = "Fitted_Values"),shape = 1) +
  ggplot2::geom_line(data = linedf, ggplot2::aes(x = k,y = medianvec),color = "red") +
    ggplot2::xlab("Fitted Values") + ggplot2::ylab("Residuals") + ggplot2::ggtitle("Residuals vs Fitted") +
    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) )
@@ -47,7 +47,7 @@ values <- data.frame("Residuals" = x$ehat,"Fitted_Values" = round(x$y_fitted,5))
   linedf2 <- data.frame(k,medianvec1)
 
    plot2 <- ggplot2::ggplot() +
-   ggplot2::geom_point(data = values, ggplot2::aes(x = values$Fitted_Values, y = values$Residuals),shape = 1) +
+   ggplot2::geom_point(data = values, ggplot2::aes_string(x = "Fitted_Values", y = "Residuals"),shape = 1) +
    ggplot2::geom_line(data = linedf2, ggplot2::aes(x = k,y = medianvec1),color = "red") +
      ggplot2::xlab("Fitted Values") +
      ggplot2::ylab(expression(sqrt(abs("Standardized Residuals")))) +

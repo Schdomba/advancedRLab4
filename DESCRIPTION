@@ -11,7 +11,11 @@ License: GPL-3 + file LICENSE
 RoxygenNote: 7.2.1
 Depends: R (>= 3.5.0)
 Imports: ggplot2,stats
-Suggests: testthat (>= 3.0.0)
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 LazyData: TRUE
 Encoding: UTF-8
+VignetteBuilder: knitr

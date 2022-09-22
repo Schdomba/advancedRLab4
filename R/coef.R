@@ -13,5 +13,7 @@
 
 
 coef.linreg <- function(object,...){
-  return(as.vector(object$coeff))
+  x <- as.vector(object$Beta)
+  names(x)<- names(object$Beta)
+  return(x)
 }
